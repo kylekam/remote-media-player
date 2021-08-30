@@ -92,6 +92,7 @@ with mp_pose.Pose(
 
         cv2.putText(image, str(counter), (100,300), cv2.FONT_HERSHEY_SIMPLEX, 3, (255,255,255), 2)
 
+        # FIX FOR ROBUSTNESS
         # Clap detect logic
         if left_angle > 90 and right_angle > 90 and dist < 0.1 and stage == True:
             pyautogui.press('space')
