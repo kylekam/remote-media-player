@@ -1,6 +1,7 @@
 import cv2
 import mediapipe as mp
 import numpy as np
+import pyautogui
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
@@ -89,11 +90,14 @@ with mp_pose.Pose(
         cv2.putText(image, str(right_angle), tuple(np.multiply(right_shoulder, [640,480]).astype(int)),
             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2)
 
+        cv2.putText(image, str(counter), (100,300), cv2.FONT_HERSHEY_SIMPLEX, 3, (255,255,255), 2)
+
         # Clap detect logic
         if left_angle > 90 and right_angle > 90 and dist < 0.1 and stage == True:
+            pyautogui.press('space')
             counter += 1
             stage = False
-        else if dist > 0.1 and stage == False:
+        elif dist > 0.1 and stage == False:
             stage = True
 
     except:
